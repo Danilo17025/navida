@@ -1,0 +1,158 @@
+
+/* Estilos básicos */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
+
+/* Encabezado */
+.header {
+    background-color: #c0392b;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1.5rem;
+    margin: 5px 0 0;
+}
+
+/* Sección principal */
+.main-content {
+    padding: 20px;
+    flex: 1;
+}
+
+.characters {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 0;
+}
+
+.character {
+    text-align: center;
+}
+
+.character img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+/* Paseo completo por toda la pantalla con múltiples regalos cayendo */
+@keyframes moveEverywhere {
+    0% {
+        transform: translate(0, 0); /* Comienza en la esquina superior izquierda */
+    }
+    25% {
+        transform: translate(90vw, 20vh); /* Se mueve a la derecha y hacia abajo */
+    }
+    50% {
+        transform: translate(70vw, 80vh); /* Baja hacia la parte inferior derecha */
+    }
+    75% {
+        transform: translate(20vw, 50vh); /* Sube hacia el centro izquierdo */
+    }
+    100% {
+        transform: translate(0, 0); /* Regresa al punto de inicio */
+    }
+}
+
+.character {
+    position: fixed; /* Permite que se mueva sobre toda la pantalla */
+    top: 0;
+    left: 0;
+    z-index: 9999; /* Se sobrepone a todos los elementos */
+    animation: moveEverywhere 10s infinite ease-in-out; /* Animación suave y en bucle */
+    pointer-events: none; /* Evita interferir con clics en otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    --x-move: calc(-10vw + randomDirection());
+    --y-move: calc(10vh + randomDirection());
+}
+
+.character .gift {
+    width: 50px; /* Tamaño del regalo */
+    height: 50px;
+    position: absolute;
+    bottom: -50px; /* Ubicación inicial fuera de la pantalla inferior */
+    animation: fall 2s infinite ease-in-out; /* Animación para que caiga hacia abajo */
+    background-image: url('regalo.png'); /* Icono del regalo */
+    background-size: cover; /* Asegura que el icono se muestre correctamente */
+    animation-delay: calc(var(--delay) * 0.2s); /* Retraso para cada regalo */
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, 0); /* Comienza en la posición inicial */
+    }
+    25% {
+        transform: translate(calc(-10vw + randomDirection()), calc(10vh + randomDirection())); /* Se desplaza aleatoriamente horizontal y verticalmente */
+    }
+    50% {
+        transform: translate(calc(10vw + randomDirection()), calc(-10vh + randomDirection())); /* Se desplaza aleatoriamente horizontal y verticalmente */
+    }
+    75% {
+        transform: translate(calc(-5vw + randomDirection()), calc(-5vh + randomDirection())); /* Dispersión aleatoria de direcciones */
+    }
+    100% {
+        transform: translate(0, 100vh); /* Sale completamente fuera de la pantalla por abajo */
+    }
+}
+
+.character p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Mensaje navideño */
+.greeting {
+    margin: 30px 0;
+    background-color: #27ae60;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.greeting h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.greeting p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+.edificio {
+    width: 500px !important;
+    height: 200px !important;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #34495e;
+    color: #fff;
+    padding: 10px 0;
+    position: relative;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}

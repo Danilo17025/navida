@@ -4,64 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Navidad</title>
-    <script>
-        // Función para generar un valor aleatorio entre -10 y 10
-        function randomDirection() {
-            return Math.random() * 20 - 10; // Generar un valor aleatorio entre -10 y 10
-        }
-
-        // Reproducir audio automáticamente cuando la página se carga
-        window.onload = function() {
-            var audio = document.getElementById('background-music').play();;
-        };
-    </script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="./favicon.png">
 </head>
 <body>
-    <!-- Reproductor de audio -->
-    <audio id="background-music" loop>
-        <source src="./feliz_navidad_arcangel.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
+    <div class="lights-container">
+        <!-- Las luces se generarán aquí dinámicamente -->
+    </div>
 
-    <header class="header">
+    <header class="header" style="margin-top: 10px;">
         <h1>🎄 ¡Feliz Navidad! 🎅</h1>
         <p>Que la magia de la Navidad llene tu hogar de alegría y felicidad.</p>
     </header>
+
     <main class="main-content">
         <section class="characters">
             <div class="character">
                 <img src="santa-claus.png" alt="Santa Claus" class="santa">
                 <p>Feliz navidadd</p>
-                <div class="gift" style="--delay: 0;"></div>
-                <div class="gift" style="--delay: 1;"></div>
-                <div class="gift" style="--delay: 2;"></div>
-                <div class="gift" style="--delay: 3;"></div>
-                <div class="gift" style="--delay: 4;"></div>
-                <div class="gift" style="--delay: 5;"></div>
-                <div class="gift" style="--delay: 6;"></div>
-                <div class="gift" style="--delay: 7;"></div>
-                <div class="gift" style="--delay: 8;"></div>
-                <div class="gift" style="--delay: 9;"></div>
-                <div class="gift" style="--delay: 10;"></div>
-                <div class="gift" style="--delay: 11;"></div>
-                <div class="gift" style="--delay: 12;"></div>
-                <div class="gift" style="--delay: 13;"></div>
-                <div class="gift" style="--delay: 14;"></div>
-                <div class="gift" style="--delay: 15;"></div>
+                <div class="gift" style="--delay: 0; --gift-color: #ff5733;"></div>
+<div class="gift" style="--delay: 1; --gift-color: #33ff57;"></div>
+<div class="gift" style="--delay: 2; --gift-color: #3357ff;"></div>
+<div class="gift" style="--delay: 3; --gift-color: #f39c12;"></div>
+<div class="gift" style="--delay: 4; --gift-color: #8e44ad;"></div>
+<div class="gift" style="--delay: 5; --gift-color: #e74c3c;"></div>
+<div class="gift" style="--delay: 6; --gift-color: #2ecc71;"></div>
+<div class="gift" style="--delay: 7; --gift-color: #3498db;"></div>
+<div class="gift" style="--delay: 8; --gift-color: #9b59b6;"></div>
+<div class="gift" style="--delay: 9; --gift-color: #f1c40f;"></div>
+<div class="gift" style="--delay: 10; --gift-color: #e67e22;"></div>
+<div class="gift" style="--delay: 11; --gift-color: #1abc9c;"></div>
+<div class="gift" style="--delay: 12; --gift-color: #34495e;"></div>
+<div class="gift" style="--delay: 13; --gift-color: #16a085;"></div>
+<div class="gift" style="--delay: 14; --gift-color: #7f8c8d;"></div>
+<div class="gift" style="--delay: 15; --gift-color: #f39c12;"></div>
+
             </div>
            
+        </section>
+        <section class="characters">
+            <!-- Árbol Navideño creado con CSS -->
+        <div class="christmas-tree">
+            <div class="tree-lights">
+                <!-- Luces del árbol -->
+                <div class="tree-light" style="--light-color: red;"></div>
+                <div class="tree-light" style="--light-color: green;"></div>
+                <div class="tree-light" style="--light-color: blue;"></div>
+                <div class="tree-light" style="--light-color: yellow;"></div>
+                <div class="tree-light" style="--light-color: purple;"></div>
+            </div>
+        </div>
+
+        <!-- Regalos debajo del árbol -->
+        <div class="gifts">
+            <div class="gift" style="--gift-color: #ff5733;"></div>
+            <div class="gift" style="--gift-color: #33c1ff;"></div>
+            <div class="gift" style="--gift-color: #ff33d4;"></div>
+        </div>
         </section>
         <section class="greeting">
             <h2>¡Felices Fiestas! 🎁</h2>
             <p>Disfruta con tus seres queridos y recuerda que lo más importante es el amor y la paz.</p>
         </section>
-        
     </main>
-    
+
     <footer class="footer">
         <p>© 2024 - Hecho con ❤️ para celebrar la Navidad.</p>
     </footer>
+
+    <script>
+        // Generar las luces navideñas
+        const lightsContainer = document.querySelector('.lights-container');
+        const numLights = 100;
+
+        for (let i = 0; i < numLights; i++) {
+            const light = document.createElement('div');
+            light.classList.add('light');
+            light.style.setProperty('--index', i);
+
+            // Posicionar las luces alrededor del borde
+            const position = i / numLights;
+            if (position < 0.25) {
+                light.style.top = '0';
+                light.style.left = `${position * 400}%`;
+            } else if (position < 0.5) {
+                light.style.right = '0';
+                light.style.top = `${(position - 0.25) * 400}%`;
+            } else if (position < 0.75) {
+                light.style.bottom = '0';
+                light.style.right = `${(position - 0.5) * 400}%`;
+            } else {
+                light.style.left = '0';
+                light.style.bottom = `${(position - 0.75) * 400}%`;
+            }
+
+            lightsContainer.appendChild(light);
+        }
+    </script>
 </body>
 </html>
